@@ -1,0 +1,81 @@
+<template>
+    <div>
+        <div class="tabar-list">
+            <i :style="{color:icon_color}" class="mdui-icon material-icons" >{{icon}}</i>
+            <span class="con-title">{{title}}</span>
+            <i class="mdui-icon material-icons keydown">keyboard_arrow_down</i>
+        </div>
+        <tabar_list_content v-bind:lists="lists"></tabar_list_content>
+    </div>
+</template>
+<script>
+    import tabar_list_content from './tabar_list_content'
+    export default {
+        components:{
+            tabar_list_content
+        },
+        data(){
+          return {
+              // list_:lists
+          }
+        },
+        props:{
+            title:{
+                type: [String, Number],
+                required: true
+            },
+            lists:{
+                type:Array,
+                default:function(){
+                    return [];
+                }
+            },
+            icon:{
+                type:String,
+                default:'home'
+            },
+            icon_color:{
+                type:String,
+                default:'pink'
+            }
+        },
+        mounted(){
+            // console.log(list_);
+        }
+    }
+</script>
+<style>
+    .tabar-list{
+        /*display: flex;*/
+        /*align-items: center;*/
+        /*justify-content: space-between;*/
+        width: 100%;
+        height: 48px;
+        line-height: 48px;
+    }
+    .tabar-list > *{
+        display: inline-block;
+        float: left;
+    }
+    .tabar-list .keydown{
+        float: right;
+    }
+    .tabar-list .con-title{
+        margin-left: 15px;
+        width: 185px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        letter-spacing:2px;
+    }
+    .tabar-list .con-title:hover{
+        cursor: pointer;
+    }
+    .left-nav .mdui-icon.material-icons{
+        padding: 0px;
+        line-height: 48px;
+    }
+    .tabar-list:hover{
+        background-color: #F2f2f2;
+    }
+</style>
