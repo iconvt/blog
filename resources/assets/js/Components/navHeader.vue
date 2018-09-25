@@ -21,6 +21,6 @@
         }
     }
 </script>
-<style>
+<style scoped>
     .mdui-icon.material-icons{padding: 18px;cursor: pointer;}
 </style>

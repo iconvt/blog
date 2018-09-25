@@ -1,7 +1,7 @@
 <template>
     <div>
         <slot></slot>
-        <tabarList v-for="data in datas"
+        <tabarList v-for="data in datas" :key="data.id"
                    v-bind:title="data.title"
                    v-bind:lists="data.lists"
                    v-bind:icon="data.icon"

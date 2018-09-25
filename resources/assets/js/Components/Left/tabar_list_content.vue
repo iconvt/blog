@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span v-for="list in lists" class="list-item">{{list.name}}</span>
+        <span v-for="list in lists" :key="list.id" class="list-item">{{list.name}}</span>
     </div>
 </template>
 
