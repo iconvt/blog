@@ -1,13 +1,13 @@
 <template>
     <div>
         <slot></slot>
-        <tabarList v-for="data in datas" :key="data.id"
-                   v-bind:title="data.title"
+        <tabarList v-for="(data,index) in datas" :key="index"
+                   v-bind:title="data.name"
                    v-bind:lists="data.lists"
                    v-bind:icon="data.icon"
-                   v-bind:icon_color="data.icon_color">
+                   v-bind:icon_color="data.icon_color"
+                   v-bind:k="index">
         </tabarList>
-        <slot></slot>
     </div>
 </template>
 <script>
@@ -26,7 +26,7 @@
                 validator:function (datas) {
                     var flag=true;
                     each(datas,function (item) {
-                        if (!item.hasOwnProperty('title')){
+                        if (!item.hasOwnProperty('name')){
                             flag = false;
                         }
                     })
@@ -38,6 +38,9 @@
             return {}
         },
         mounted(){
+        },
+        computed:{
+
         }
     }
 </script>

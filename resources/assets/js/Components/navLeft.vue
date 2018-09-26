@@ -1,6 +1,12 @@
 <template>
     <div class="left-nav">
-        <tabar v-bind:datas="datas"></tabar>
+        <tabar v-bind:datas="datas">
+            <el-input @keyup.enter.native="postSearch"
+                    placeholder="请输入内容"
+                    v-model="search"
+                    clearable>
+            </el-input>
+        </tabar>
     </div>
 </template>
 <script>
@@ -41,12 +47,19 @@
                 //         ]
                 //     },
                 // ],
-                // datas:[]
+                search:''
             }
         },
         methods:{
             inits(){
                 this.$store.dispatch('leftbanner/getCateList')
+            },
+            postSearch(){
+                let _this=this
+                this.$store.dispatch({type:'article/search',keyword:this.search}).then(function(res){
+                    _this.$router.push('/articleList');
+                    console.log(_this,'tiaozhuangchenggong')
+                })
             }
         },
         created(){
@@ -60,7 +73,13 @@
     }
 </script>
 <style>
-    .left-nav{
-        padding: 16px;
+    /*.left-nav{*/
+        /*!*padding: 16px;*!*/
+    /*}*/
+    .el-input{
+        padding: 0 16px;
+        box-sizing: border-box;
+        margin: 20px 0;
     }
+    .el-input__suffix{right: 20px;}
 </style>

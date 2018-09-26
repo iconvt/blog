@@ -23,11 +23,9 @@ const getters = {
 // actions
 const actions = {
     getCateList ({ commit, state }) {
-        const savedCartItems = [...state.catelist]
         left.index((res)=>{
             commit('setCateList',res)
         },(error)=>{
-            console.log(error);
             commit('setCateList',{data:error})
         })
     }
@@ -39,7 +37,6 @@ const mutations = {
         state.showCateitem=id;
     },
     setCateList(state,{data}){
-        console.log(data);
         if (Array.isArray(data)){
             state.catelist=data;
         }else{
