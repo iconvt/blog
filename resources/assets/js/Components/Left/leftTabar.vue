@@ -6,7 +6,7 @@
                    v-bind:lists="data.lists"
                    v-bind:icon="data.icon"
                    v-bind:icon_color="data.icon_color"
-                   v-bind:k="index">
+                   v-bind:k="index" @childclick.stop="bbb">
         </tabarList>
     </div>
 </template>
@@ -38,9 +38,17 @@
             return {}
         },
         mounted(){
+            // this.$on('childclick',function(){
+            //     alert(111);
+            // })
         },
         computed:{
 
+        },
+        methods:{
+            bbb:function(e){
+                console.log(e.target)
+            }
         }
     }
 </script>

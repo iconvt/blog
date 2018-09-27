@@ -1,11 +1,13 @@
 <template>
-    <div @click.stop="changeK">
+    <!--<div @click.stop="changeK">-->
+    <div>
         <div class="tabar-list">
             <i :style="{color:icon_color}" class="mdui-icon material-icons" >{{icon}}</i>
-            <span class="con-title">{{title}}</span>
+            <span class="con-title" v-on="mydiyevent" :data-child="type">{{title}}</span>
             <i class="mdui-icon material-icons keydown">keyboard_arrow_down</i>
         </div>
-        <tabar_list_content v-bind:lists="lists" :class="leftshow"></tabar_list_content>
+        <!--<tabar_list_content v-bind:lists="lists" :class="leftshow" @click.stop="aaa"></tabar_list_content>-->
+        <tabar_list_content v-bind:lists="lists" :class="leftshow" v-on="mydiyevent"></tabar_list_content>
     </div>
 </template>
 <script>
@@ -17,7 +19,8 @@
         },
         data(){
           return {
-              key:this.key
+              key:this.key,
+              type:'parent'  //父标签
           }
         },
         props:{
@@ -50,6 +53,9 @@
         methods:{
             changeK:function(){
                 this.$store.commit({type:'leftbanner/setShowItem',id:this.k});
+            },
+            aaa:function(e){
+                console.log(e.target);
             }
         },
         computed:{
@@ -57,7 +63,27 @@
                 leftshow : function (state){
                     return state.leftbanner.showCateitem==this.k?"show":'none';
                 }
-            })
+            }),
+            mydiyevent:function(){
+                return this.$listeners;
+                let _this= this;
+                return Object.assign({},
+                    this.$listeners,
+                    {
+                        childclick:function(event){
+                            alert(33);
+                            if (event.target.getAttribute('data-child')=='child'){
+                                _this.$emit('click',event.target);
+                            }
+                        },
+                        parentclick:function(event){
+                            if (event.target.getAttribute('data-child')=='parent'){
+                                _this.$emit('click',event.target);
+                            }
+                        }
+                    }
+                )
+            }
         }
     }
 </script>
