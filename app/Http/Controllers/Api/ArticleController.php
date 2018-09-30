@@ -11,7 +11,7 @@ class ArticleController extends Controller
 {
     //
     public function lists(Request $request){
-        dd(Input::get());
+//        dd(Input::get());
         $data=[
             [
                 'title'=>'每日一爆',

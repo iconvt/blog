@@ -3,11 +3,11 @@
     <div>
         <div class="tabar-list">
             <i :style="{color:icon_color}" class="mdui-icon material-icons" >{{icon}}</i>
-            <span class="con-title" v-on="mydiyevent" :data-child="type">{{title}}</span>
+            <span class="con-title" v-on="mydiyevent" :data-child="type" :data-id="k">{{title}}</span>
             <i class="mdui-icon material-icons keydown">keyboard_arrow_down</i>
         </div>
         <!--<tabar_list_content v-bind:lists="lists" :class="leftshow" @click.stop="aaa"></tabar_list_content>-->
-        <tabar_list_content v-bind:lists="lists" :class="leftshow" v-on="mydiyevent"></tabar_list_content>
+        <tabar_list_content v-bind:lists="lists" v-on="mydiyevent" :class="leftshow"></tabar_list_content>
     </div>
 </template>
 <script>
@@ -65,20 +65,16 @@
                 }
             }),
             mydiyevent:function(){
-                return this.$listeners;
                 let _this= this;
                 return Object.assign({},
                     this.$listeners,
                     {
-                        childclick:function(event){
-                            alert(33);
+                        click:function(event){
                             if (event.target.getAttribute('data-child')=='child'){
-                                _this.$emit('click',event.target);
+                                _this.$emit('childclick',event);
                             }
-                        },
-                        parentclick:function(event){
                             if (event.target.getAttribute('data-child')=='parent'){
-                                _this.$emit('click',event.target);
+                                _this.$emit('parentclick',event);
                             }
                         }
                     }

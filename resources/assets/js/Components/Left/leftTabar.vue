@@ -6,7 +6,7 @@
                    v-bind:lists="data.lists"
                    v-bind:icon="data.icon"
                    v-bind:icon_color="data.icon_color"
-                   v-bind:k="index" @childclick.stop="bbb">
+                   v-bind:k="index" v-on="eventTabbar">
         </tabarList>
     </div>
 </template>
@@ -43,12 +43,31 @@
             // })
         },
         computed:{
-
+            eventTabbar:function(){
+                let _this=this;
+                return Object.assign({},this.$listeners,{
+                    childclick:function (e) {
+                        _this.$emit('childclick',e);
+                    },
+                    parentclick:function(e){
+                        _this.$emit('parentclick',e);
+                    }
+                })
+            }
         },
         methods:{
             bbb:function(e){
                 console.log(e.target)
-            }
+            },
+            // changeitem:function(e){
+            //     this.$store.commit({type:'leftbanner/setShowItem',id:e.target.getAttribute('data-id')});
+            // },
+            // articlelist:function(e){
+            //     let id = e.target.getAttribute('data-id');
+            //     this.$store.dispatch({type:'article/getAricleList',id:id}).then(function(){
+            //         this.$router.push('')
+            //     })
+            // }
         }
     }
 </script>

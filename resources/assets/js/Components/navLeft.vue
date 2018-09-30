@@ -1,6 +1,9 @@
 <template>
     <div class="left-nav">
-        <tabar v-bind:datas="datas">
+        <tabar
+                v-bind:datas="datas"
+                @childclick="articlelist"
+                @parentclick="changeitem" >
             <el-input @keyup.enter.native="postSearch"
                     placeholder="请输入内容"
                     v-model="search"
@@ -59,6 +62,16 @@
                 this.$store.dispatch({type:'article/search',keyword:this.search}).then(function(res){
                     _this.$router.push('/articleList');
                     console.log(_this,'tiaozhuangchenggong')
+                })
+            },
+            changeitem:function(e){
+                this.$store.commit({type:'leftbanner/setShowItem',id:e.target.getAttribute('data-id')});
+            },
+            articlelist:function(e){
+                let id = e.target.getAttribute('data-id');
+                let _this=this
+                this.$store.dispatch({type:'article/getAricleList',id:id}).then(function(){
+                    _this.$router.push('/articleList');
                 })
             }
         },
