@@ -14,10 +14,10 @@
     </el-container>
 </template>
 <script>
-    import navHeader from '../Components/navHeader';
-    import navLeft from '../Components/navLeft';
-    import navContent from '../Components/navContent';
-    import {event} from '../Module/event.js';
+    import navHeader from '../../Components/navHeader';
+    import navLeft from '../../Components/navLeft';
+    import navContent from '../../Components/navContent';
+    import {event} from '../../Module/event.js';
     export default {
         components:{
             navHeader,navLeft,navContent

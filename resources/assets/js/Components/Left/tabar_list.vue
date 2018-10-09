@@ -36,7 +36,7 @@
             },
             icon:{
                 type:String,
-                default:'home'
+                default:''
             },
             icon_color:{
                 type:String,

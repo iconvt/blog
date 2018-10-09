@@ -1,3 +1,4 @@
+<!--tabar 组件有2个自定义组件 childclick parentclick 点击事件-->
 <template>
     <div class="left-nav">
         <tabar
@@ -21,35 +22,6 @@
         },
         data(){
             return {
-                // datas: [
-                //     {
-                //         title:'首页',
-                //         icon:'home',
-                //         icon_color:'black',
-                //         lists:[
-                //             {name:'你好'},
-                //             {name:'你不好'}
-                //         ]
-                //     },
-                //     {
-                //         title:'搜藏',
-                //         icon:'code',
-                //         icon_color:'green',
-                //         lists:[
-                //             {name:'简单'},
-                //             {name:'好难'}
-                //         ]
-                //     },
-                //     {
-                //         title:'学习',
-                //         icon:'book',
-                //         icon_color:'red',
-                //         lists:[
-                //             {name:'好学'},
-                //             {name:'不好学'}
-                //         ]
-                //     },
-                // ],
                 search:''
             }
         },
@@ -76,7 +48,7 @@
             }
         },
         created(){
-            this.inits();
+            this.inits();       //初始化数据
         },
         computed:{
             ...mapState({
@@ -86,9 +58,6 @@
     }
 </script>
 <style>
-    /*.left-nav{*/
-        /*!*padding: 16px;*!*/
-    /*}*/
     .el-input{
         padding: 0 16px;
         box-sizing: border-box;
