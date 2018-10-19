@@ -39,8 +39,8 @@
     export default {
         data(){
             return {
-                content:'1561651',
-                init_content:'1561651',
+                content:'',
+                init_content:'',
                 mdkeys:mdkeylists,
                 currentFocus:{}
             }
@@ -62,17 +62,19 @@
                     _this.currentFocus.focus=this.focus;
                     _this.currentFocus.selected=this.selected;
                     console.log(this);
-                    window._node=this;
+                    window._node=_this.currentFocus;
                 })
             },
-            insertDOM:function(e){
+            insertDOM:function(e){      //替换选中的内容,textNode会自动转义,加了span,就是html有点丑,MD没有影响
                 let k = e.target.getAttribute('data-k');
                 let insertStr = mdKeys[k];
                 let Node = this.currentFocus.Node;
-                let str = Node.textContent.slice(0,this.currentFocus.focus)+insertStr+Node.textContent.slice(this.currentFocus.focus);
-                Node.data=str;
-                console.log(Node,this.currentFocus.focus)
-                window._node=Node;
+                // let str = Node.textContent.slice(0,this.currentFocus.focus)+insertStr+Node.textContent.slice(this.currentFocus.focus);
+                // let newDOM = document.createElement('span');
+                // newDOM.innerHTML=str;
+                // Node.parentNode.replaceChild(newDOM,Node)
+                // window._node=Node;
+                utils.setFocusContent(this.currentFocus,insertStr);
                 this.content=document.getElementsByClassName('input')[0].innerText;
             }
         }
@@ -85,10 +87,11 @@
         height: 100%;
         vertical-align: top;
         box-sizing: border-box;
-        padding: 0 20px;
+        padding: 20px 20px;
+        background-color: rgba(192,192,192,0.2);
     }
     #editor{position: relative;}
-    #editor .el-dropdown{position: absolute;top:0;left: 35%;}
+    #editor .el-dropdown{position: absolute;top:20px;left: 35%;}
     textarea {
         border: none;
         border-right: 1px solid #ccc;

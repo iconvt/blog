@@ -26,7 +26,10 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
+        $this->app['events']->listen('eloquent.saving: *', function (string $event_name, array $data){
+            /** @var \App\Extensions\Illuminate\Database\Eloquent\Model $object */
+            $object = $data[0];
+            $object->validate();
+        });
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
+//use App\Services\CategoryService;
+use Category;
 
 class ArticleController extends Controller
 {
@@ -30,6 +32,7 @@ class ArticleController extends Controller
                 'pub_date'=>'2018-09-15'
             ]
         ];
-        return Response::create($data);
+//        return Response::create($data);
+        Category::addCategory(Input::get());
     }
 }

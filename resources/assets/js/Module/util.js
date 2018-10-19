@@ -43,5 +43,25 @@ export default {
         } else{
             return result;
         }
+    },
+    setFocusContent:function(focusNode,content){
+        if (focusNode.Node.nodeName=='#text'){
+            let str = focusNode.Node.textContent.slice(0,focusNode.focus)+content+focusNode.Node.textContent.slice(focusNode.focus);
+            let newDOM = document.createElement('span');
+            newDOM.innerHTML=str;
+            focusNode.Node.parentNode.replaceChild(newDOM,focusNode.Node)
+        }else{
+            if (focusNode.Node.innerHTML.match('<br>')===null){
+                focusNode.Node.innerHTML=content;
+            } else {
+                focusNode.Node.innerHTML = focusNode.Node.innerHTML.split("<br>").map(function (item,index) {
+                    if (index==focusNode.focus-1){
+                        return content;
+                    } else {
+                        return item+'<br>';
+                    }
+                }).join("");
+            }
+        }
     }
 }
